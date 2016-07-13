@@ -39,7 +39,6 @@
         android:title="@string/call"
         app:showAsAction="always" />
     <item android:id="@+id/menuitem1"
-        android:icon="@drawable/ic_one_black_24dp"
         android:title="1"
         app:showAsAction="always" />
     <item android:id="@+id/menuitem2"

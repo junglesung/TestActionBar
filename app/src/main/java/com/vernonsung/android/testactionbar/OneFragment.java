@@ -1,6 +1,8 @@
 package com.vernonsung.android.testactionbar;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -16,10 +19,34 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class OneFragment extends Fragment {
+    public interface OneFragmentListener {
+        void changeFragment();
+    }
 
+    private OneFragmentListener oneFragmentListener;
 
     public OneFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OneFragmentListener) {
+            oneFragmentListener = (OneFragmentListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OneFragmentListener");
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof OneFragmentListener) {
+            oneFragmentListener = (OneFragmentListener) activity;
+        } else {
+            throw new RuntimeException(activity.toString() + " must implement OneFragmentListener");
+        }
     }
 
     @Override
@@ -32,12 +59,26 @@ public class OneFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_one, container, false);
+        View view = inflater.inflate(R.layout.fragment_one, container, false);
+        TextView textView = (TextView) view.findViewById(R.id.textViewOne);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                oneFragmentListener.changeFragment();
+            }
+        });
+        return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        oneFragmentListener = null;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.menu_one, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

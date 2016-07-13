@@ -8,7 +8,11 @@
     <string name="rotate_180">Rotate 180</string>
     <string name="rotate_270">Rotate 270</string>
     <string name="call">Call</string>
+    <string name="people">People</string>
 
     <!-- One fragment -->
-    <string name="one_fragment"> fragment</string>
+    <string name="one_fragment">One fragment</string>
+
+    <!-- Two fragment -->
+    <string name="two_fragment">Two fragment</string>
 </resources>

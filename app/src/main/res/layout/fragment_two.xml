@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vernonsung.android.testactionbar.OneFragment">
+    tools:context=".TwoFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/textViewOne"
+        android:id="@+id/textViewTwo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/one_fragment" />
+        android:text="@string/two_fragment" />
 
 </RelativeLayout>
