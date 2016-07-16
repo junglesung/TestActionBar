@@ -1,50 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:title="@string/camera"
-        android:icon="@drawable/ic_add_a_photo_white_24dp"
-        app:showAsAction="always">
-        <menu>
-            <item android:id="@+id/menuitemCamera"
-                android:icon="@drawable/ic_add_a_photo_black_24dp"
-                android:title="@string/camera"/>
-            <item android:id="@+id/menuitemPhoto"
-                android:icon="@drawable/ic_insert_photo_black_24dp"
-                android:title="@string/photo"/>
-        </menu>
-    </item>
     <item android:id="@+id/menuitemAdd"
-        android:icon="@drawable/ic_add_black_24dp"
+        android:icon="@drawable/ic_add_white_24dp"
         android:title="@string/add"
         app:showAsAction="always" />
     <item android:id="@+id/menuitemMinus"
-        android:icon="@drawable/ic_remove_black_24dp"
+        android:icon="@drawable/ic_remove_white_24dp"
         android:title="@string/minus"
         app:showAsAction="always" />
-    <item android:id="@+id/menuitemRotate90"
-        android:icon="@drawable/ic_rotate_right_black_24dp"
-        android:title="@string/rotate_90"
-        app:showAsAction="always" />
-    <item android:id="@+id/menuitemRotate180"
-        android:icon="@drawable/ic_refresh_black_24dp"
-        android:title="@string/rotate_180"
-        app:showAsAction="always" />
-    <item android:id="@+id/menuitemRotate270"
-        android:icon="@drawable/ic_rotate_left_black_24dp"
-        android:title="@string/rotate_270"
-        app:showAsAction="always" />
     <item android:id="@+id/menuitemCall"
-        android:icon="@drawable/ic_call_black_24dp"
+        android:icon="@drawable/ic_call_white_24dp"
         android:title="@string/call"
         app:showAsAction="always" />
-    <item android:id="@+id/menuitem1"
-        android:title="1"
-        app:showAsAction="always" />
-    <item android:id="@+id/menuitem2"
-        android:title="2"
-        app:showAsAction="always|withText" />
-    <item android:id="@+id/menuitem3"
-        android:title="3"
-        app:showAsAction="always|withText" />
 </menu>

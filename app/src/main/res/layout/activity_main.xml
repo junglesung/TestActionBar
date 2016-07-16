@@ -5,26 +5,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.vernonsung.android.testactionbar.MainActivity">
-    <HorizontalScrollView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ToolbarTheme"
+        android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:scrollbars="none">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/my_toolbar"
+        android:elevation="4dp"
+        android:theme="@style/ToolbarTheme" >
+        <!--TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ToolbarTheme" >
-            <!--TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:text="Love" /-->
-        </android.support.v7.widget.Toolbar>
-    </HorizontalScrollView>
+            android:gravity="left"
+            android:text="Love" /-->
+    </android.support.v7.widget.Toolbar>
     <FrameLayout
         android:id="@+id/frameMain"
         android:layout_width="match_parent"
