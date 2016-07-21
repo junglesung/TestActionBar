@@ -43,6 +43,7 @@ public class OneFragment extends Fragment {
     private static final int REQUEST_IMAGE_BROWSE = 2;
     private Uri mCurrentPhotoUri;
     private ImageView imageViewOne;
+    private int rotateDegree = 0;  // 0~270
 
     public OneFragment() {
         // Required empty public constructor
@@ -250,16 +251,10 @@ public class OneFragment extends Fragment {
     }
 
     private void rotateImage() {
-        // FIXME
-//        Picasso.with(getActivity()).load(mCurrentPhotoUri).rotate(90f).into(imageViewOne);
-        Matrix matrix = new Matrix();
-        int imageWidth = imageViewOne.getDrawable().getBounds().width();
-        int imageHeight = imageViewOne.getDrawable().getBounds().height();
-//        matrix.postRotate(90f, imageWidth/2, imageHeight/2);
-        RectF drawableRect = new RectF(0, 0, imageWidth, imageHeight);
-        RectF viewRect = new RectF(0, 0, imageViewOne.getWidth(), imageViewOne.getHeight());
-        matrix.setRectToRect(drawableRect, viewRect, Matrix.ScaleToFit.CENTER);
-        imageViewOne.setScaleType(ImageView.ScaleType.MATRIX);   //required
-        imageViewOne.setImageMatrix(matrix);
+        rotateDegree += 90;
+        if (rotateDegree >= 360) {
+            rotateDegree -= 360;
+        }
+        Picasso.with(getActivity()).load(mCurrentPhotoUri).rotate((float) rotateDegree).into(imageViewOne);
     }
 }
