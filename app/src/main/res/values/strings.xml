@@ -27,6 +27,7 @@
         <item>8</item>
         <item>9</item>
     </string-array>
+    <string name="send">Send</string>
     <string name="no_app_to_choose_an_image">No APP to choose an image</string>
     <string name="load_an_image_from">Load an image from</string>
 

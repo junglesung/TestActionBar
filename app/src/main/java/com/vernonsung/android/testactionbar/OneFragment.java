@@ -6,11 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,6 +28,9 @@ import android.support.v7.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -149,6 +155,10 @@ public class OneFragment extends Fragment {
                 Log.d(LOG_TAG, getString(R.string.people_9));
                 changePeople(9);
                 return true;
+            case R.id.menuitemSend:
+                Log.d(LOG_TAG, getString(R.string.send));
+                saveImage();
+                return true;
             default:
                 Log.d(LOG_TAG, "default");
                 return super.onOptionsItemSelected(item);
@@ -251,10 +261,45 @@ public class OneFragment extends Fragment {
     }
 
     private void rotateImage() {
+        if (mCurrentPhotoUri == null) {
+            return;
+        }
         rotateDegree += 90;
         if (rotateDegree >= 360) {
             rotateDegree -= 360;
         }
         Picasso.with(getActivity()).load(mCurrentPhotoUri).rotate((float) rotateDegree).into(imageViewOne);
     }
+
+    private void saveImage() {
+        SaveImageAsyncTask saveImageAsyncTask = new SaveImageAsyncTask(rotateDegree);
+        saveImageAsyncTask.execute(mCurrentPhotoUri);
+    }
+
+    private class SaveImageAsyncTask extends AsyncTask<Uri, Void, Void> {
+        private int rotateDegree = 0;
+
+        public SaveImageAsyncTask(int rotateDegree) {
+            this.rotateDegree = rotateDegree;
+        }
+
+        @Override
+        protected Void doInBackground(Uri... uris) {
+            if (uris == null) {
+                return null;
+            }
+            try {
+                Bitmap bitmap = Picasso.with(getActivity()).load(uris[0]).rotate((float) rotateDegree).get();
+                FileOutputStream fileOutputStream = getActivity().openFileOutput("imageToUpload.jpg", Context.MODE_PRIVATE);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 75, fileOutputStream);
+                fileOutputStream.close();
+            } catch (IOException e) {
+                Log.d(LOG_TAG, "Save image failed because " + e.toString());
+                return null;
+            }
+            Log.d(LOG_TAG, "imageToUpload.jpg saved");
+            return null;
+        }
+    }
+
 }

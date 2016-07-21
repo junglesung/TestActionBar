@@ -45,4 +45,8 @@
                 app:showAsAction="always" />
         </menu>
     </item>
+    <item android:id="@+id/menuitemSend"
+        android:title="@string/send"
+        android:icon="@drawable/ic_send_white_24dp"
+        app:showAsAction="always" />
 </menu>
